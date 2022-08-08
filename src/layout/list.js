@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux'
-import { View, Text, FlatList, TouchableHighlight, Button } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight, Button, Platform } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { mainStyles } from '../styles/main';
 import { importHandler } from '../data/file';
 
 
+
 export default ({ navigation }) => {
     let devices = useSelector(state => state.devices);
     const [file, setFile] = React.useState(false);
-
+    
     const { checkFile, exportDevices, importDevices } = React.useCallback(importHandler(setFile, devices), [file, devices]);
 
     React.useLayoutEffect(()=>{
@@ -17,7 +18,7 @@ export default ({ navigation }) => {
         navigation.setOptions({    
             title:'Devices List',    
             headerRight: () => (
-             <><Button
+             <View style={{flexDirection:'row'}}><Button
                onPress={() => navigation.navigate("Edit")}
                title="Add"
                color="#000"                          
@@ -34,7 +35,7 @@ export default ({ navigation }) => {
                color="#000"    
                disabled={!file}                                            
              />
-             </>
+             </View>
            )           
         })
     }, [devices, file]);
