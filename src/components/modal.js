@@ -6,7 +6,7 @@ export default ({navigation}) =>{
     const [hide, setHide] = React.useState(false)
     const [qoute, setQoute] = React.useState({})
     React.useEffect(()=>{
-      fetch("https://zenquotes.io/api/today").then(res=> res.json()).then(res => setQoute((res.pop())))
+      fetch("https://type.fit/api/quotes").then(res=> res.json()).then(res => setQoute((res.pop())))
     }, [])
     return <Modal
                 animationType="fade"
@@ -18,7 +18,7 @@ export default ({navigation}) =>{
                 }}>                     
           <TouchableOpacity onPress={()=>setHide(true)} activeOpacity={1} style={mainStyles.modalCont}>
             <View style={mainStyles.modalInnerCont}>
-              <Text style={mainStyles.title}>{qoute["q"]}{"\n\n"}{qoute["a"]}</Text>            
+              <Text style={mainStyles.title}>{qoute["text"]}{"\n\n"}{qoute["author"]}</Text>            
             </View> 
           </TouchableOpacity>        
         </Modal>

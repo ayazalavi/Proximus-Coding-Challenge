@@ -7,7 +7,7 @@ const deviceSlice = createSlice({
   reducers: {
     add(state, action) {
         state.push({
-          id: uuid.v4(),
+          id: action.payload.id || uuid.v4(),
           model: action.payload.model,
           os: action.payload.os,
           owner: action.payload.owner,
