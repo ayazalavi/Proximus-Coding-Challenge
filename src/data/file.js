@@ -1,3 +1,4 @@
+var RNFS = require('react-native-fs');
 import { add } from '../data/slice';
 import { useDispatch } from 'react-redux'
 import { Alert, Platform } from 'react-native';
